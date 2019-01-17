@@ -51,7 +51,7 @@ To create an IoT shadow for the Raspberry click on the following link but first 
 Tutorial instructions:
 - At the beginning it says to got to AWS IoT, it should actually say that you should go to AWS IoT Core
 - Use the name *workshopiot* to name your device.
-- When downloading the root CA, click on the `RSA 20148 but key` link and copy the content in a file with the name `AmazonRootCA1.pem`.
+- When downloading the root CA, click on the `RSA 2048 bit key` link and copy the content in a file with the name `AmazonRootCA1.pem`.
  
 After registering the Raspberry (by following the link below) we will: create an IoT shadow of the Raspberry, generate and save the certificates. 
 This will create a IoT Shadow for our device - a list of APIs that we can use to put the data into the cloud. 
