@@ -130,7 +130,7 @@ Use the index name `moisture` to visualize the data.
 2. Run the `main.py` script again.
 
 
-##### Water the plant programmatically
+### Water the plant programmatically
 a. Wire the peristaltic pump to our system.
 
 The relay that we are going to use has two channels. We are going to use only one of them.
