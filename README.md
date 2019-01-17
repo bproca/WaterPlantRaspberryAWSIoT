@@ -28,6 +28,8 @@ The hardware that we are going to use in this workshop consists of:
 - display, keyboard and mouse for the raspberry PI device
 - wifi internet connection
 
+Link with the components [here](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/files/components.jpg).
+
 From a software point of view Software
 - AWS account
 - Mosquitto clients
@@ -147,6 +149,8 @@ To wire the relay we are going to use a new type of wiring and ports called term
 - the negative end of the power supply will go to the negative end of the peristaltic pump
 - take a wire and connect the Normally Open port (NO1) of the relay to the positive end of the peristaltic pump
 
+Link with all the components connected [here](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/files/connected%20components.jpg).
+
 Plug in the pump, firstly without putting it into the water.
 
 b. Write the code to start pumping the water
@@ -162,3 +166,5 @@ c. Water the plant
 1. Stop the script
 2. Put one of the hoses into water and the other on the plant's soil
 3. Start the `main.py` script again 
+
+
