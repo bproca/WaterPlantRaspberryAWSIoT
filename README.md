@@ -17,6 +17,7 @@ Summary of the steps for measuring the soil moisture:
 In the second phase we are going to water the plant programmatically.
 Steps:
 - setup the peristaltic pump
+- write code to start the pump
 - control the pump to water programmatically
 
 ### Tools
@@ -32,7 +33,7 @@ From a software point of view Software
 - Mosquitto clients
 
    
-###Workshop
+## Workshop
  
 ### Measure soil moisture and send the data to the cloud
 
