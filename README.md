@@ -47,7 +47,7 @@ You should see on the display the operating system (Raspbian OS) loading.
 ##### b. Create an IoT shadow for the PI
 An AWS IoT Shadow is a digital representation of the a device used to both identify the device as well as help with the data acquisition in cloud.
 
-To create an IoT shadow for the Raspberry click on the following link but first read some instructions below. This is the tutorial to follow [this aws docs link](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdk-setup.html). 
+To create an IoT shadow for the Raspberry click on the following link but first read some instructions below. This is the tutorial to follow [link](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdk-setup.html). 
 Tutorial instructions:
 - At the beginning it says to got to AWS IoT, it should actually say that you should go to AWS IoT Core
 - Use the name *workshopiot* to name your device.
@@ -76,7 +76,8 @@ Before clicking the link for the tutorial below, you can read the following acti
 
 From the left hand side menu of the IoT Core page in the AWS console, go to the `Act` section and start creating a rule. Gave it a name of your choice.
 
-- On the `Rule query statement`, select all the fields from a topic named 'soil-moisture', this is the topic name we are going to use. For the statement, have a look at the example in the line above.
+- On the `Rule query statement`, select all the fields from a topic named 'soil-moisture' (remember this topic name we are going to use later in the code). 
+For the statement, have a look at the example in the line above.
 - Add and configure an action to store message in an Elasticsearch domain (`Add action` button under the `Set one or more actions` section)                     
         - Click create a resource. This will open up the Elasticsearch create domain page. Gave it a name of your choice.            
         - Leave the defaults until you get to the `Network Configuration` page. 
@@ -118,6 +119,11 @@ Write code to read the sensor's output.
 1. Create a file called `publisher.py` in the `soil-moisture-project` folder
 2. Use the partial code from the link below and address the TODOs from the `send_data` method as well as fill in the constants from the beginning of the script: 
 [partial code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/workshop/publisher_partial.py)
+
+To use the `send_data` method that you have just updated we need to modify the `main.py`:
+- from the `loop()` method in `main.py` you should call `publisher.send_data(moisture)`
+- make sure the publisher `setup` method is uncommented and the `import publisher` line as well.
+
 3. Run the main.py script to send the data to the cloud. For reference, this is an example of completion of those TODOs 
 [complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/complete/publisher.py)
 
@@ -142,7 +148,7 @@ To wire the relay we are going to use a new type of wiring and ports called term
 2. Connect the Raspberry PI to the relay:
 - connect a GND pin on the Raspberry Pi to the GND pin on the relay
 - connect one of the 5v pins on the Raspberry Pi to the VCC pin on the relay
-- connect the GPIO 11 pin on the raspberry pi to the IN1 pin on the relay
+- connect the GPIO 17 pin on the raspberry pi to the IN1 pin on the relay
 
 3. Then, we are going to connect the external power supply to the relay.
 - the positive end of the power supply (of the peristaltic pump) will go to COM1 (in the middle of the 3 ports)  

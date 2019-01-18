@@ -9,11 +9,11 @@ import json
 
 client_id = 'TODO' # the name of the AWS IoT Thing
 thing_endpoint = 'TODO' #aws IoT thing endpoint
-mqtt_topic = 'TODO' # the mqtt topic
+mqtt_topic = 'TODO' # the mqtt topic used in the AWS IoT rule
 
 # certs
 cert_filename = 'certs/raspberry-certificate.pem.crt'
-ca_filename = 'certs/root-ca.pem'
+ca_filename = 'certs/AmazonCARoot1.pem'
 private_key_filename = 'certs/raspberry-private.pem.key'
 
 # mqtt connection

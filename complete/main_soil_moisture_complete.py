@@ -2,7 +2,7 @@
 
 import RPi.GPIO as GPIO
 import time
-import publisher
+#import publisher
 import Adafruit_ADS1x15
 
 RelayPin = 11
@@ -32,16 +32,15 @@ def loop():
     while True:
         time.sleep(2)
         value = read_adc_value()
-        moisture = value * 100 / MAX_VALUE_ADC
-        print 'analog value: %03d  moisture percentage: %d' %(value, moisture)
-        publisher.send_data(moisture)
+        # TODO compute the moisture percentage as the percentage of the read value from the maximum possible
+        # TODO print the moisture percentage to the console
 
 def read_adc_value():
     return MAX_VALUE_ADC - adc.get_last_result()
 
 if __name__ == '__main__':
     try:
-        # publisher.setup()
+        #publisher.setup()
         setup()
         loop()
     except KeyboardInterrupt:
