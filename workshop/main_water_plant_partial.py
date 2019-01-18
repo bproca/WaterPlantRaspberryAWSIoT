@@ -41,7 +41,7 @@ def read_adc_value():
 
 if __name__ == '__main__':
     try:
-        # publisher.setup()
+        publisher.setup()
         setup()
         loop()
     except KeyboardInterrupt:

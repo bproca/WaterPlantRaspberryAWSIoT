@@ -47,7 +47,7 @@ You should see on the display the operating system (Raspbian OS) loading.
 #### b. Create an IoT shadow for the PI
 An AWS IoT Shadow is a digital representation of the a device used to both identify the device as well as help with the data acquisition in cloud.
 
-To create an IoT shadow for the Raspberry click on the following link but first read some instructions below. This is the tutorial to follow [link](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdk-setup.html). 
+To create an IoT shadow for the Raspberry click on the following link but first read some instructions below. The tutorial to follow for this section is [here](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdk-setup.html). 
 Tutorial instructions:
 - At the beginning it says to got to AWS IoT, it should actually say that you should go to AWS IoT Core
 - Use the name *workshopiot* to name your device.
