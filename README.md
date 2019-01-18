@@ -39,12 +39,12 @@ From a software point of view Software
  
 ### Measure soil moisture and send the data to the cloud
 
-##### a. Setup the Raspberry PI 
+#### a. Setup the Raspberry PI 
 1. Connect the peripherals (display, mouse and keyboard) to the Raspberry PI then plug it in. 
 You should see on the display the operating system (Raspbian OS) loading.
 2. On the desktop, create a folder named *soil-moisture-project* where we are going to save our files.
 
-##### b. Create an IoT shadow for the PI
+#### b. Create an IoT shadow for the PI
 An AWS IoT Shadow is a digital representation of the a device used to both identify the device as well as help with the data acquisition in cloud.
 
 To create an IoT shadow for the Raspberry click on the following link but first read some instructions below. This is the tutorial to follow [link](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdk-setup.html). 
@@ -58,37 +58,33 @@ This will create a IoT Shadow for our device - a list of APIs that we can use to
 Before clicking the link for the tutorial below, you can read the following actions that we are going to take while doing the tutorial. 
 
 1. Go to `Downloads` and see all the certificates downloaded. 
-
-1.1. You should also see the root named `AmazonRootCA1.pem`.   
-
-1.2. Create a folder called `certs` in the `soil-moisture-project` folder that you created earlier.
-
-1.3. Go to the `downloads` folder and copy all the files inside the `certs` folder.  
+   - You should also see the root named `AmazonRootCA1.pem`.   
+   - Create a folder called `certs` in the `soil-moisture-project` folder that you created earlier.
+   - Go to the `downloads` folder and copy all the files inside the `certs` folder.  
  
 2. Go to the `certs` folder and rename the files as described below. We do this to have common naming in the scripts that we are going to write to be easier to sync among ourselves.
-2.1. Rename the file with the "x-certificate.pem.crt" extension to "raspberry-certificate.pem.crt".
-2.2. Rename the file with the ".pem.key" extension to "raspberry-private.pem.key"
-2.3. Make sure the root CA pem file is named "AmazonRootCA1.pem"
+   - Rename the file with the "x-certificate.pem.crt" extension to "raspberry-certificate.pem.crt".
+   - Rename the file with the ".pem.key" extension to "raspberry-private.pem.key"
+   - Make sure the root CA pem file is named "AmazonRootCA1.pem"
 
 
-
-##### c. Create a rule to send the data to Elasticsearch
+#### c. Create a rule to send the data to Elasticsearch
 
 From the left hand side menu of the IoT Core page in the AWS console, go to the `Act` section and start creating a rule. Gave it a name of your choice.
 
-- On the `Rule query statement`, select all the fields from a topic named 'soil-moisture' (remember this topic name we are going to use later in the code). 
+1. On the `Rule query statement`, select all the fields from a topic named 'soil-moisture' (remember this topic name we are going to use later in the code). 
 For the statement, have a look at the example in the line above.
-- Add and configure an action to store message in an Elasticsearch domain (`Add action` button under the `Set one or more actions` section)                     
-        - Click create a resource. This will open up the Elasticsearch create domain page. Gave it a name of your choice.            
-        - Leave the defaults until you get to the `Network Configuration` page. 
-            - Select the `Public access` configuration.
-            - On the `Set the domain access policy to` dropdown select `Open access to the domain`, then click `ok`, `next` and `confirm`
-        - Go back to the create rule tab. Select the Elasticsearch domain (you will need to click on the refresh icon first).        
-        - Add the following values for the Elasticsearch configuration:
-            - id = ${newuuid()}
-            - index = moisture
-            - type = data                                         
-        - From the roles list select the `sit_workshop_role` role and click `Configure`    
+2. Add and configure an action to store message in an Elasticsearch domain (`Add action` button under the `Set one or more actions` section)                     
+   - Click create a resource. This will open up the Elasticsearch create domain page. Gave it a name of your choice.            
+     - Leave the defaults until you get to the `Network Configuration` page. 
+       - Select the `Public access` configuration.
+       - On the `Set the domain access policy to` dropdown select `Open access to the domain`, then click `ok`, `next` and `confirm`
+     - Click in the browser the tab were you were creating the rule. Select the Elasticsearch domain (you will need to click on the refresh icon first).        
+       - Add the following values for the Elasticsearch configuration:        
+         - id = ${newuuid()}            
+         - index = moisture            
+         - type = data                                                     
+     - From the roles list select the `sit_workshop_role` role and click `Configure`    
 
 #### d. Wire up the sensor to the breadboard 
 Depending on the case, you may need to use female-female wires or male-female wires.
@@ -120,9 +116,9 @@ Write code to read the sensor's output.
 2. Use the partial code from the link below and address the TODOs from the `send_data` method as well as fill in the constants from the beginning of the script: 
 [partial code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/workshop/publisher_partial.py)
 
-To use the `send_data` method that you have just updated we need to modify the `main.py`:
-- from the `loop()` method in `main.py` you should call `publisher.send_data(moisture)`
-- make sure the publisher `setup` method is uncommented and the `import publisher` line as well.
+    To use the `send_data` method that you have just updated we need to modify the `main.py`:
+    - from the `loop()` method in `main.py` you should call `publisher.send_data(moisture)`
+    - make sure the publisher `setup` method is uncommented and the `import publisher` line as well.
 
 3. Run the main.py script to send the data to the cloud. For reference, this is an example of completion of those TODOs 
 [complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/complete/publisher_complete.py)
@@ -145,18 +141,18 @@ To wire the relay we are going to use a new type of wiring and ports called term
 1. Disconnect the Raspberry PI from the breadboard by taking out the connector band.
 
 2. Connect the Raspberry PI to the relay:
-- connect a GND pin on the Raspberry Pi to the GND pin on the relay
-- connect one of the 5v pins on the Raspberry Pi to the VCC pin on the relay
-- connect the GPIO 17 pin on the raspberry pi to the IN1 pin on the relay
+   - connect a GND pin on the Raspberry Pi to the GND pin on the relay
+   - connect one of the 5v pins on the Raspberry Pi to the VCC pin on the relay
+   - connect the GPIO 17 pin on the raspberry pi to the IN1 pin on the relay
 
 3. Then, we are going to connect the external power supply to the relay.
-- the positive end of the power supply (of the peristaltic pump) will go to COM1 (in the middle of the 3 ports)  
-- the negative end of the power supply will go to the negative end of the peristaltic pump
-- take a wire and connect the Normally Open port (NO1) of the relay to the positive end of the peristaltic pump
+   - the positive end of the power supply (of the peristaltic pump) will go to COM1 (in the middle of the 3 ports)  
+   - the negative end of the power supply will go to the negative end of the peristaltic pump
+   - take a wire and connect the Normally Open port (NO1) of the relay to the positive end of the peristaltic pump
 
-Link with all the components connected [here](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/files/connected%20components.jpg).
+    Link with all the components connected [here](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/files/connected%20components.jpg).
 
-Plug in the pump, firstly without putting it into the water.
+    Plug in the pump, firstly without putting it into the water.
 
 #### b. Write the code to start pumping the water
 
@@ -167,7 +163,7 @@ Plug in the pump, firstly without putting it into the water.
 For reference, this is an example of completion of those TODOs from the previous step 
 [complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/complete/main_water_plant_complete.py)
 
-c. Water the plant 
+#### c. Water the plant 
 1. Stop the script
 2. Put one of the hoses into water and the other on the plant's soil
 3. Start the `main.py` script again 
