@@ -32,15 +32,15 @@ def loop():
     while True:
         time.sleep(2)
         value = read_adc_value()
-        # TODO compute the moisture percentage as the percentage of the read value from the maximum possible
-        # TODO print the moisture percentage to the console
+        moisture = value * 100 / MAX_VALUE_ADC
+        print 'analog value: %03d  moisture: %d' %(value, moisture)
 
 def read_adc_value():
     return MAX_VALUE_ADC - adc.get_last_result()
 
 if __name__ == '__main__':
     try:
-        #publisher.setup()
+        publisher.setup()
         setup()
         loop()
     except KeyboardInterrupt:

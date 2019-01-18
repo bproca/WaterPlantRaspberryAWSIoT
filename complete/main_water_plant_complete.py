@@ -33,7 +33,7 @@ def loop():
         time.sleep(2)
         value = read_adc_value()
         moisture = value * 100 / MAX_VALUE_ADC
-        print 'analog value: %03d  moisture%: %d' %(value, moisture)
+        print 'analog value: %03d  moisture: %d' %(value, moisture)
         if moisture < DRY_THRESHOLD:
             pump_water()
 
