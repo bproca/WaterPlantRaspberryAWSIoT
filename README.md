@@ -84,13 +84,13 @@ For the statement, have a look at the example in the line above.
             - Select the `Public access` configuration.
             - On the `Set the domain access policy to` dropdown select `Open access to the domain`, then click `ok`, `next` and `confirm`
         - Go back to the create rule tab. Select the Elasticsearch domain (you will need to click on the refresh icon first).        
-        - Add the following values for the Elasticsearch configuration
+        - Add the following values for the Elasticsearch configuration:
             - id = ${newuuid()}
             - index = moisture
             - type = data                                         
         - From the roles list select the `sit_workshop_role` role and click `Configure`    
 
-##### d. Wire up the sensor to the breadboard 
+#### d. Wire up the sensor to the breadboard 
 Depending on the case, you may need to use female-female wires or male-female wires.
 1. Connect the two parts of the sensor to each other: the `sensor platine` to its `controller chip`. Use two wires female-female.
 2. Connect the sensor to the breadboard.  
@@ -105,17 +105,17 @@ Then connect the ADC to the breadboard:
 Having now all the wiring done, connect the breadboard to the Raspberry PI.
 Then grab the prongs of the sensor and insert them into the plant's soil.
 
-##### e. Write the code to read the sensor's output 
+#### e. Write the code to read the sensor's output 
 Write code to read the sensor's output.
 1. Create a file called `main.py` inside the `soil-moisture-project` 
 2. Use the partial code from the link below and address the TODOs from the `loop` method:  
 [partial code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/workshop/main_soil_moisture_partial.py)
 
 3. Run the main.py script to see the output to the console. For reference, this is an example of completion of those TODOs  
-[complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/workshop/main_water_plant_partial.py)
+[complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/complete/main_soil_moisture_complete.py)
  
 
-##### f. Write the code to send the data to the cloud
+#### f. Write the code to send the data to the cloud
 1. Create a file called `publisher.py` in the `soil-moisture-project` folder
 2. Use the partial code from the link below and address the TODOs from the `send_data` method as well as fill in the constants from the beginning of the script: 
 [partial code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/workshop/publisher_partial.py)
@@ -125,21 +125,20 @@ To use the `send_data` method that you have just updated we need to modify the `
 - make sure the publisher `setup` method is uncommented and the `import publisher` line as well.
 
 3. Run the main.py script to send the data to the cloud. For reference, this is an example of completion of those TODOs 
-[complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/complete/publisher.py)
+[complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/complete/publisher_complete.py)
 
-
-##### Visualize the data and water the plant programmatically  
+#### g. Visualize the data and water the plant programmatically  
 In the AWS console, go to the Elasticsearch service. There, click on the domain, then on the Kibana link.
 Use the index name `moisture` to visualize the data.
 
-##### g. Water the plant then get the second set of probes 
+#### h. Water the plant then get the second set of probes 
 1. Water the plant with a small amount of water. 
 (We may need to water the plant several times during the workshop, that's why we don't want to pour lots of water at once).
 2. Run the `main.py` script again.
 
 
 ### Water the plant programmatically
-a. Wire the peristaltic pump to our system.
+#### a. Wire the peristaltic pump to our system.
 
 The relay that we are going to use has two channels. We are going to use only one of them.
 To wire the relay we are going to use a new type of wiring and ports called terminal screws.
@@ -159,14 +158,14 @@ Link with all the components connected [here](https://github.com/bproca/AWSIoTRa
 
 Plug in the pump, firstly without putting it into the water.
 
-b. Write the code to start pumping the water
+#### b. Write the code to start pumping the water
 
 1. Use the partial code from the link below and address the TODOs from the `pump_water` method:  
 [partial code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/workshop/main_water_plant_partial.py)
 
 2. Run the main.py script to see the pump starting. 
 For reference, this is an example of completion of those TODOs from the previous step 
-[complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/complete/main.py)
+[complete code](https://github.com/bproca/AWSIoTRaspberryWorkshop/blob/master/complete/main_water_plant_complete.py)
 
 c. Water the plant 
 1. Stop the script
